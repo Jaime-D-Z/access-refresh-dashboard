@@ -10,6 +10,8 @@ Este proyecto consiste en una aplicación full-stack que automatiza la renovaci�
 
 - ⚡ **Actualización automática**: Scheduler que refresca tokens cada 23 horas
 - 🔄 **Generación manual**: Botón para forzar la actualización inmediata
+- ⏱️ **Contador en tiempo real**: Visualización dinámica del tiempo restante hasta la expiración
+- 📊 **Barra de progreso**: Indicador visual que muestra el ciclo de vida del token
 - 🌓 **Modo oscuro/claro**: Interfaz adaptable con toggle de tema
 - 📱 **Diseño responsivo**: Interfaz moderna usando React y CSS
 - 🔐 **API REST**: Backend Django con endpoints seguros
@@ -64,10 +66,16 @@ frontend/src/
 2. **Visualización de tokens**: Se muestran dos tarjetas:
    - Una para el Access Token
    - Una para el Refresh Token
-3. **Indicador de tiempo**: Se muestra la última fecha y hora de actualización
-4. **Estados visuales**: 
+3. **Contador en tiempo real**: El sistema incluye un temporizador dinámico que muestra:
+   - Tiempo restante hasta la expiración del access token (24 horas)
+   - Formato legible: horas, minutos y segundos (ej: 23h 45m 30s)
+   - Barra de progreso visual que disminuye conforme pasa el tiempo
+   - Actualización automática cada segundo sin necesidad de recargar
+4. **Indicador de tiempo**: Se muestra la última fecha y hora de actualización
+5. **Estados visuales**: 
    - Indicador de carga mientras se procesan las peticiones
    - Feedback visual cuando se completa una actualización
+   - El contador se reinicia automáticamente al generar nuevos tokens
 
 ## 📋 Requisitos
 
@@ -165,6 +173,14 @@ OAUTH_REFRESH_URL = "https://oauth.provider.com/token"
 - Texto monoespaciado para mejor legibilidad de tokens
 - Posibilidad de copiar tokens al portapapeles (funcionalidad del componente)
 
+### Contador de Tiempo Restante
+- **Temporizador en vivo**: Muestra exactamente cuánto tiempo queda antes de que expire el access token
+- **Formato intuitivo**: Desplegado en horas, minutos y segundos (23h 45m 30s)
+- **Barra de progreso visual**: Representación gráfica que se reduce gradualmente
+- **Actualización continua**: El contador disminuye cada segundo de forma automática
+- **Reinicio automático**: Al generar nuevos tokens, el contador vuelve a 24 horas
+- **Sincronización precisa**: Calcula el tiempo basándose en la fecha de última actualización del backend
+
 ### Feedback Visual
 - Animaciones suaves al generar nuevos tokens
 - Indicador de "Cargando..." mientras se procesan peticiones
@@ -215,11 +231,19 @@ Facilita las pruebas al garantizar que siempre haya tokens válidos disponibles 
 
 ## 📊 Beneficios del Sistema
 
-✅ **Sin intervención manual**: Una vez configurado, funciona completamente automático
-✅ **Alta disponibilidad**: Los tokens siempre están actualizados y disponibles
-✅ **Visibilidad**: Interface clara para monitorear el estado de los tokens
-✅ **Flexibilidad**: Opción de renovación manual cuando sea necesario
-✅ **Escalable**: Fácil de adaptar para múltiples proveedores OAuth
+✅ **Sin intervención manual**: Una vez configurado, funciona completamente automático.
+
+✅ **Alta disponibilidad**: Los tokens siempre están actualizados y disponibles.
+
+✅ **Visibilidad total**: Interfaz clara para monitorear el estado de los tokens en tiempo real.
+
+✅ **Control de expiración**: Nunca pierdas la noción de cuándo expirará tu Access Token.
+
+✅ **Flexibilidad**: Opción de renovación manual cuando sea necesario.
+
+✅ **Experiencia de usuario mejorada**: Contador visual intuitivo con barra de progreso.
+
+✅ **Escalable**: Fácil de adaptar para múltiples proveedores OAuth.
 
 ## 🚀 Próximas Mejoras
 
