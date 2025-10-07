@@ -1,0 +1,33 @@
+:root {
+  --bg-light: #f9f9f9;
+  --bg-dark: #121212;
+  --card-light: #fff;
+  --card-dark: #1e1e1e;
+  --text-light: #121212;
+  --text-dark: #fff;
+  --button-bg-light: #6200ee;
+  --button-bg-dark: #bb86fc;
+  --button-text: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
